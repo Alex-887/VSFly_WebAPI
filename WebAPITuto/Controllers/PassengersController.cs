@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WebAPITuto.Models;
-
 namespace WebAPITuto.Controllers
 {
     [Route("api/[controller]")]
@@ -27,12 +26,27 @@ namespace WebAPITuto.Controllers
             return await _context.Passenger.ToListAsync();
         }
 
+
+        // GET: api/Passengers/GetAllTicketsForDestination/destination
+        [HttpGet("GetAllTicketsForDestination/{destination}")]
+        public List<Passenger> GetAllTicketsForDestination(string destination)
+        {
+            return (from f in _context.Flight
+                    join p in _context.Passenger on f.FlightNo equals p.FK_FlightNo
+                    where f.Destination == destination
+                    select p).ToList();
+        }
+
+
+
         // GET: api/Passengers/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Passenger>> GetPassenger(int id)
         {
             var passenger = await _context.Passenger.FindAsync(id);
 
+        
+
             if (passenger == null)
             {
                 return NotFound();
@@ -41,69 +55,35 @@ namespace WebAPITuto.Controllers
             return passenger;
         }
 
-        // PUT: api/Passengers/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutPassenger(int id, Passenger passenger)
-        {
-            if (id != passenger.PassengerId)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(passenger).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!PassengerExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
 
         // POST: api/Passengers
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for
-        // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
         public async Task<ActionResult<Passenger>> PostPassenger(Passenger passenger)
         {
             _context.Passenger.Add(passenger);
+
+            LessSeats(passenger.FK_FlightNo);
+
+
+            Flight flight;
+
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetPassenger", new { id = passenger.PassengerId }, passenger);
         }
 
-        // DELETE: api/Passengers/5
-        [HttpDelete("{id}")]
-        public async Task<ActionResult<Passenger>> DeletePassenger(int id)
+        // GET: api/Flights/LessSeats/id
+        [HttpGet("LessSeats/{id}")]
+        public void LessSeats(int id)
         {
-            var passenger = await _context.Passenger.FindAsync(id);
-            if (passenger == null)
-            {
-                return NotFound();
-            }
+            Flight flight = _context.Flight.Find(id);
 
-            _context.Passenger.Remove(passenger);
-            await _context.SaveChangesAsync();
+            flight.SeatsAvailable = flight.SeatsAvailable - 1;
 
-            return passenger;
+
         }
 
-        private bool PassengerExists(int id)
-        {
-            return _context.Passenger.Any(e => e.PassengerId == id);
-        }
+
+
     }
 }
