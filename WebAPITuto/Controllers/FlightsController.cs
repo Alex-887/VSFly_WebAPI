@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+using EFCore;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebAPITuto.Models;
 
 namespace WebAPITuto.Controllers
 {
@@ -13,9 +12,9 @@ namespace WebAPITuto.Controllers
     [ApiController]
     public class FlightsController : ControllerBase
     {
-        private readonly TodoContext _context;
+        private readonly VsFlightContext _context;
 
-        public FlightsController(TodoContext context)
+        public FlightsController(VsFlightContext context)
         {
             _context = context;
         }
@@ -81,6 +80,9 @@ namespace WebAPITuto.Controllers
                                            join p in _context.Passenger on f.FlightNo equals p.FK_FlightNo
                                            where f.Destination == destination
                                            select p.SalePrice).Average();
+
+
+
             return averagePriceDestination;
 
         }

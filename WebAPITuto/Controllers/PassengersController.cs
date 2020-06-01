@@ -2,19 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using EFCore;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebAPITuto.Models;
 namespace WebAPITuto.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class PassengersController : ControllerBase
     {
-        private readonly TodoContext _context;
+        private readonly VsFlightContext _context;
 
-        public PassengersController(TodoContext context)
+        public PassengersController(VsFlightContext context)
         {
             _context = context;
         }
@@ -32,6 +32,7 @@ namespace WebAPITuto.Controllers
         public List<Passenger> GetAllTicketsForDestination(string destination)
         {
             return (from f in _context.Flight
+
                     join p in _context.Passenger on f.FlightNo equals p.FK_FlightNo
                     where f.Destination == destination
                     select p).ToList();
@@ -64,8 +65,6 @@ namespace WebAPITuto.Controllers
 
             LessSeats(passenger.FK_FlightNo);
 
-
-            Flight flight;
 
             await _context.SaveChangesAsync();
 
