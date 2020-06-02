@@ -15,16 +15,6 @@ namespace EFCore
         public int SeatsAvailable { get; set; }
 
 
-      //public Flight() { }
-
-
-      //  public Flight(string Description, decimal Price)
-      //  {
-      //      Description = "This Flight is offered to you by VsFlight.";
-      //      this.Description = Description;
-      //      this.Price = Price;
-      //  }
-
 
         public override decimal GetPrice()
         {

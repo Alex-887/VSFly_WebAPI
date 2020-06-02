@@ -20,10 +20,14 @@ namespace WebAPITuto.Controllers
         }
 
         // GET: api/Flights
+        
+
+        //ONLY GETS THE FLIGHTS THAT HAVE MORE THAN 0 SEAT AND ALSO THAT ARE NOT BEFORE TODAY
+
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Flight>>> GetFlightSet()
         {
-            return await _context.Flight.Where(flight => flight.SeatsAvailable > 0).ToListAsync();
+            return await _context.Flight.Where(flight => flight.SeatsAvailable > 0 && flight.Date > DateTime.Now).ToListAsync();
         }
 
 
@@ -43,6 +47,7 @@ namespace WebAPITuto.Controllers
             //If the airplane is more than 80% full regardless of the date:
             if (flight.Seats / 100 * 20 > flight.SeatsAvailable)
                 flight.Price = flight.Price / 100 * 150;
+
             else
             {
                 //If the plane is filled less than 20 % less than 2 months before departure:

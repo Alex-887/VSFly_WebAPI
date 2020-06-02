@@ -23,7 +23,6 @@ namespace EFCore
 
             Carrier flight1 = new Flight() { FlightNo = 9999, Departure = "RDC", Destination = "RDA", Date = new DateTime(), Seats = 100, SeatsAvailable = 100 };
             flight1 = new Alcohol(flight1);
-            flight1 = new Milkshake(flight1);
             flight1 = new MassageHotStone(flight1);
 
             Console.WriteLine("Calculating price for flight number 1  : ");

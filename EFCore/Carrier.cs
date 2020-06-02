@@ -23,21 +23,6 @@ namespace EFCore
 
         public abstract decimal GetPrice();
 
-        //public virtual string GetDescription
-        //{
-        //    get
-        //    {
-        //        return this.Description;
-        //    }
-        //}
-
-        //public virtual decimal GetPrice
-        //{
-        //    get
-        //    {
-        //        return this.Price;
-        //    }
-        //}
 
 
 

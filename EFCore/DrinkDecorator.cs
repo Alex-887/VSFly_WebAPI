@@ -13,8 +13,7 @@
 
         public override decimal GetPrice()
         {
-                return Carrier.Price+=Price;
-            
+             return Carrier.Price+=Price;
         }
 
 
