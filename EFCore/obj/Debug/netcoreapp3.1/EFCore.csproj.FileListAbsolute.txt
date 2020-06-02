@@ -1,5 +1,4 @@
 E:\ProgrammingWithComponents\VSFly_WebAPI\EFCore\bin\Debug\netcoreapp3.1\EFCore.exe
-E:\ProgrammingWithComponents\VSFly_WebAPI\EFCore\obj\Debug\netcoreapp3.1\EFCore.csprojAssemblyReference.cache
 E:\ProgrammingWithComponents\VSFly_WebAPI\EFCore\obj\Debug\netcoreapp3.1\EFCore.AssemblyInfoInputs.cache
 E:\ProgrammingWithComponents\VSFly_WebAPI\EFCore\obj\Debug\netcoreapp3.1\EFCore.AssemblyInfo.cs
 E:\ProgrammingWithComponents\VSFly_WebAPI\EFCore\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll

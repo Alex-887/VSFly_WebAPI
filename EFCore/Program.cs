@@ -6,15 +6,11 @@ namespace EFCore
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Generating flights ... ");
-
-            CreateDatabase();
+            Console.WriteLine("Calculating flights ... ");
 
             NewFlight();
 
-
-            Console.WriteLine("Flight created");
-
+            Console.WriteLine("Flights created");
 
         }
 
@@ -23,35 +19,28 @@ namespace EFCore
 
         public static void NewFlight()
         {
-            using (var ctx = new VsFlightContext())
-            {
-                Flight flight1 = new Flight() { Departure="RDC", Destination="RDA", Date= new DateTime(), Seats= 100, Price = 1000, SeatsAvailable = 100, Description ="" };
-                flight1 = new MassageHotStone(flight1);
 
 
-                ctx.Add(flight1);
+            Carrier flight1 = new Flight() { FlightNo = 9999, Departure = "RDC", Destination = "RDA", Date = new DateTime(), Seats = 100, SeatsAvailable = 100 };
+            flight1 = new Alcohol(flight1);
+            flight1 = new Milkshake(flight1);
+            flight1 = new MassageHotStone(flight1);
 
-                ctx.SaveChanges();
-            }
+            Console.WriteLine("Calculating price for flight number 1  : ");
+            Console.WriteLine(flight1.GetPrice());
+
+
+            Carrier flight2 = new Flight() { FlightNo = 9999, Departure = "RDC", Destination = "RDA", Date = new DateTime(), Seats = 100, SeatsAvailable = 100 };
+            flight2 = new SwedishMassage(flight2);
+            flight2 = new SoftDrinks(flight2);
+
+
+            Console.WriteLine("Calculating price for flight number 2  : ");
+            Console.WriteLine(flight2.GetPrice());
+
+
         }
-
-        private static void CreateDatabase()
-        {
-            using (var ctx = new VsFlightContext())
-            {
-
-                var e = ctx.Database.EnsureCreated();
-
-                if (e)
-                    Console.WriteLine("Database has been created !");
-            }
-        }
-
-
 
     }
-
-
-
 
 }

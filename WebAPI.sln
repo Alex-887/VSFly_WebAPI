@@ -5,7 +5,12 @@ VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebAPITuto\WebApi.csproj", "{8623C3DD-4167-425F-B35A-E32017F50AE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCore", "EFCore\EFCore.csproj", "{EE56CD78-7296-4979-9B26-8AB5F1393D54}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EFCore", "EFCore\EFCore.csproj", "{EE56CD78-7296-4979-9B26-8AB5F1393D54}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D8616CD8-F416-417A-9ACD-6BBABD981D74}"
+	ProjectSection(SolutionItems) = preProject
+		DecoratorPattern.dgml = DecoratorPattern.dgml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

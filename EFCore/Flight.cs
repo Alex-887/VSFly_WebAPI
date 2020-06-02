@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EFCore
 {
-    public class Flight
+    public class Flight : Carrier
     {
-
         [Key]
         public int FlightNo { get; set; }
         public string Departure { get; set; }
@@ -16,24 +13,22 @@ namespace EFCore
         public int Seats { get; set; }
         public decimal Price { get; set; }
         public int SeatsAvailable { get; set; }
-        public string Description;
 
 
-        public virtual string GetDescription
+      //public Flight() { }
+
+
+      //  public Flight(string Description, decimal Price)
+      //  {
+      //      Description = "This Flight is offered to you by VsFlight.";
+      //      this.Description = Description;
+      //      this.Price = Price;
+      //  }
+
+
+        public override decimal GetPrice()
         {
-
-            get
-            {
-                return Description;
-            }
-
+            return Price;
         }
-
-
-
-
-
-
-
     }
 }

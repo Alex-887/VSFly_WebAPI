@@ -8,17 +8,38 @@ namespace EFCore
     public abstract class Carrier
     {
 
+        public decimal Price;
+
         public Carrier()
         {
-            Description = "This carrier belongs to VsFlight Corporation.";
-        }
-        
-        public string Description { get; set; }
 
-        public string GetDescription()
-        {
-            return Description;
         }
+
+        public Carrier(decimal Price)
+        {
+            this.Price = Price;
+        }
+
+
+        public abstract decimal GetPrice();
+
+        //public virtual string GetDescription
+        //{
+        //    get
+        //    {
+        //        return this.Description;
+        //    }
+        //}
+
+        //public virtual decimal GetPrice
+        //{
+        //    get
+        //    {
+        //        return this.Price;
+        //    }
+        //}
+
+
 
 
     }
